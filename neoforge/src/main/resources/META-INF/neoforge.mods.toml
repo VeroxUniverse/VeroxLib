@@ -1,0 +1,45 @@
+modLoader = "javafml"
+loaderVersion = "[2,)"
+#issueTrackerURL = ""
+license = "MIT"
+
+[[mods]]
+modId = "veroxlib"
+version = "${version}"
+displayName = "VeroxLib"
+authors = "VeroxUniverse"
+description = '''
+
+'''
+#logoFile = ""
+
+[[dependencies.veroxlib]]
+modId = "neoforge"
+type = "required"
+versionRange = "[21,)"
+ordering = "NONE"
+side = "BOTH"
+
+[[dependencies.veroxlib]]
+modId = "minecraft"
+type = "required"
+versionRange = "[1.21.1,)"
+ordering = "NONE"
+side = "BOTH"
+
+[[dependencies.veroxlib]]
+modId = "architectury"
+type = "required"
+versionRange = "[13.0.8,)"
+ordering = "AFTER"
+side = "BOTH"
+
+[[dependencies.veroxlib]]
+modId="cloth_config"
+type="required"
+versionRange="[15.0,)"
+ordering="NONE"
+side="BOTH"
+
+[[mixins]]
+config = "veroxlib.mixins.json"

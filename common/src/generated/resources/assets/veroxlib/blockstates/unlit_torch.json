@@ -1,0 +1,7 @@
+{
+  "variants": {
+    "": {
+      "model": "veroxlib:block/unlit_torch"
+    }
+  }
+}

@@ -1,0 +1,32 @@
+architectury {
+    common rootProject.enabled_platforms.split(',')
+}
+
+loom {
+    mixin {
+        defaultRefmapName = "veroxlib.refmap.json"
+    }
+}
+
+dependencies {
+    modImplementation "net.fabricmc:fabric-loader:$rootProject.fabric_loader_version"
+
+    compileOnly "me.shedaniel.cloth:cloth-config:${rootProject.cloth_config_version}"
+
+    modImplementation "dev.architectury:architectury:$rootProject.architectury_api_version"
+}
+
+sourceSets {
+    main {
+        resources {
+            srcDir 'src/generated/resources'
+        }
+    }
+}
+
+processResources {
+    tasks.withType(AbstractCopyTask).configureEach {
+        duplicatesStrategy = DuplicatesStrategy.INCLUDE
+        exclude '.cache/**'
+    }
+}

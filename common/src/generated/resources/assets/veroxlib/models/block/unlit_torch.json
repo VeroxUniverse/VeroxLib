@@ -1,0 +1,6 @@
+{
+  "parent": "minecraft:block/torch",
+  "textures": {
+    "torch": "veroxlib:block/unlit_torch"
+  }
+}

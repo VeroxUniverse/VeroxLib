@@ -1,0 +1,7 @@
+{
+  "parent": "minecraft:block/template_hanging_lantern",
+  "textures": {
+    "lantern": "veroxlib:block/unlit_lantern",
+    "particle": "veroxlib:block/unlit_lantern"
+  }
+}

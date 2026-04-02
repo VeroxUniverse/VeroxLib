@@ -1,0 +1,16 @@
+{
+  "variants": {
+    "hanging=false,waterlogged=false": {
+      "model": "veroxlib:block/unlit_lantern"
+    },
+    "hanging=false,waterlogged=true": {
+      "model": "veroxlib:block/unlit_lantern"
+    },
+    "hanging=true,waterlogged=false": {
+      "model": "veroxlib:block/unlit_hanging_lantern"
+    },
+    "hanging=true,waterlogged=true": {
+      "model": "veroxlib:block/unlit_hanging_lantern"
+    }
+  }
+}

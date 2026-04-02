@@ -1,0 +1,42 @@
+{
+  "schemaVersion": 1,
+  "id": "veroxlib",
+  "version": "${version}",
+  "name": "VeroxLib",
+  "description": "",
+  "authors": [
+    "VeroxUniverse"
+  ],
+  "contact": {
+    "homepage": ""
+  },
+  "license": "MIT",
+  "icon": "assets/veroxlib/icon.png",
+  "environment": "*",
+  "entrypoints": {
+    "main": [
+      "net.veroxuniverse.veroxlib.fabric.VeroxLibFabric"
+    ],
+    "client": [
+      "net.veroxuniverse.veroxlib.fabric.client.VeroxLibFabricClient"
+    ],
+    "modmenu": [
+      "net.veroxuniverse.veroxlib.fabric.ModMenuIntegration"
+    ]
+  },
+  "mixins": [
+    "veroxlib.mixins.json",
+    "fabric_veroxlib.mixins.json"
+  ],
+  "depends": {
+    "fabricloader": ">=0.18.4",
+    "minecraft": "~1.21.1",
+    "java": ">=21",
+    "architectury": ">=13.0.8",
+    "fabric-api": "*",
+    "cloth-config2": "*"
+  },
+  "suggests": {
+    "modmenu": "*"
+  }
+}

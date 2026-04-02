@@ -1,0 +1,19 @@
+{
+  "variants": {
+    "facing=east": {
+      "model": "veroxlib:block/unlit_wall_torch"
+    },
+    "facing=north": {
+      "model": "veroxlib:block/unlit_wall_torch",
+      "y": 270
+    },
+    "facing=south": {
+      "model": "veroxlib:block/unlit_wall_torch",
+      "y": 90
+    },
+    "facing=west": {
+      "model": "veroxlib:block/unlit_wall_torch",
+      "y": 180
+    }
+  }
+}

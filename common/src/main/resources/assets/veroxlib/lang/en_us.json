@@ -1,0 +1,85 @@
+{
+  "message.veroxlib.sleep_1": "The sleep has calmed your mind.",
+  "message.veroxlib.sleep_2": "You feel rested and secure.",
+  "message.veroxlib.sleep_3": "The morning light brings some comfort.",
+  "message.veroxlib.sleep_4": "The nightmares fade... for now.",
+  "message.veroxlib.sleep_5": "You feel a bit more like yourself again.",
+  "message.veroxlib.sleep_6": "67",
+
+  "message.veroxlib.sleep_cultist_1": "The abyss spoke to you in your dreams.",
+  "message.veroxlib.sleep_cultist_2": "You feel the darkness pulse within you.",
+  "message.veroxlib.sleep_cultist_3": "The shadows welcomed your rest.",
+
+  "message.veroxlib.corruption_increased": "Your soul has been further corrupted by the absolute darkness...",
+
+  "gui.veroxlib.sanity_label": "Sanity",
+
+  "attribute.veroxlib.sanity_resistance": "Sanity Resistance",
+  "attribute.veroxlib.corruption": "Corruption",
+
+  "effect.veroxlib.sanity_protection": "Mental Clarity",
+
+  "text.autoconfig.veroxlib.option.corruption": "Corruption Level",
+
+  "text.autoconfig.veroxlib.title": "VeroxLib Settings",
+
+  "text.autoconfig.veroxlib.category.default": "General Settings",
+  "text.autoconfig.veroxlib.option.enableSanityEffects": "Enable Sanity Effects",
+  "text.autoconfig.veroxlib.option.enableSanityEffects.@Tooltip": "If disabled, sanity will still be calculated and shown on the HUD, but no hallucinations or sounds will occur.",
+  "text.autoconfig.veroxlib.option.corruptionAffectsSanity": "Enable Corruption Sanity Multiplier",
+  "text.autoconfig.veroxlib.option.corruptionAffectsSanity.@Tooltip": "If enabled, your current corruption level will multiply the speed of sanity loss.",
+  "text.autoconfig.veroxlib.option.corruptionMultiplierStrength": "Corruption Multiplier Strength",
+  "text.autoconfig.veroxlib.option.corruptionMultiplierStrength.@Tooltip": "Adjust how much corruption impacts sanity. A value of 5 equals 0.5x strength.",
+
+  "text.autoconfig.veroxlib.category.light_logic": "Sanity Settings",
+  "text.autoconfig.veroxlib.option.darknessThreshold": "Darkness Threshold",
+  "text.autoconfig.veroxlib.option.darknessThreshold.@Tooltip": "Light level below which sanity starts to drain (0-15).",
+  "text.autoconfig.veroxlib.option.brightnessThreshold": "Brightness Threshold",
+  "text.autoconfig.veroxlib.option.brightnessThreshold.@Tooltip": "Light level above which sanity starts to recover.",
+  "text.autoconfig.veroxlib.option.sanityReduction": "Sanity Drain Speed",
+  "text.autoconfig.veroxlib.option.sanityReduction.@Tooltip": "How fast sanity drops in the dark.",
+  "text.autoconfig.veroxlib.option.sanityGain": "Sanity Recovery Speed",
+  "text.autoconfig.veroxlib.option.sanityGain.@Tooltip": "How fast sanity recovers in the light.",
+
+  "text.autoconfig.veroxlib.category.sleep": "Sleep Settings",
+  "text.autoconfig.veroxlib.option.sleepResetsCompletely": "Full Sleep Reset",
+  "text.autoconfig.veroxlib.option.sleepResetsCompletely.@Tooltip": "If enabled, sleeping will set sanity back to 100%.",
+  "text.autoconfig.veroxlib.option.sanityGainFromSleep": "Sanity Gain on Wake-up",
+  "text.autoconfig.veroxlib.option.sanityGainFromSleep.@Tooltip": "Fixed amount of sanity restored after sleeping (if not full reset).",
+
+  "text.autoconfig.veroxlib.category.effects": "Effect Settings",
+  "text.autoconfig.veroxlib.option.absoluteDarkness": "Effect: Absolute Darkness",
+  "text.autoconfig.veroxlib.option.absoluteDarkness.extinguishLamps": "Extinguish Lights",
+  "text.autoconfig.veroxlib.option.absoluteDarkness.threshold": "Sanity Threshold",
+  "text.autoconfig.veroxlib.option.absoluteDarkness.radius": "Radius",
+  "text.autoconfig.veroxlib.option.whispering": "Effect: Whispering",
+  "text.autoconfig.veroxlib.option.footsteps": "Effect: Footsteps",
+  "text.autoconfig.veroxlib.option.doorCreak": "Effect: Door Creaks",
+  "text.autoconfig.veroxlib.option.fakeCreeper": "Effect: Fake Creeper",
+  "text.autoconfig.veroxlib.option.heartbeat": "Effect: Heartbeat",
+  "text.autoconfig.veroxlib.option.whispering.enabled": "Enabled",
+  "text.autoconfig.veroxlib.option.whispering.chance": "Trigger Chance",
+  "text.autoconfig.veroxlib.option.whispering.threshold": "Sanity Threshold",
+  "text.autoconfig.veroxlib.option.footsteps.enabled": "Enabled",
+  "text.autoconfig.veroxlib.option.footsteps.chance": "Trigger Chance",
+  "text.autoconfig.veroxlib.option.footsteps.threshold": "Sanity Threshold",
+  "text.autoconfig.veroxlib.option.doorCreak.enabled": "Enabled",
+  "text.autoconfig.veroxlib.option.doorCreak.chance": "Trigger Chance",
+  "text.autoconfig.veroxlib.option.doorCreak.threshold": "Sanity Threshold",
+  "text.autoconfig.veroxlib.option.fakeCreeper.enabled": "Enabled",
+  "text.autoconfig.veroxlib.option.fakeCreeper.chance": "Trigger Chance",
+  "text.autoconfig.veroxlib.option.fakeCreeper.threshold": "Sanity Threshold",
+  "text.autoconfig.veroxlib.option.heartbeat.enabled": "Enabled",
+  "text.autoconfig.veroxlib.option.heartbeat.threshold": "Sanity Threshold",
+
+  "block.veroxlib.unlit_torch": "Unlit Torch",
+  "block.veroxlib.unlit_wall_torch": "Unlit Wall Torch",
+  "block.veroxlib.unlit_lantern": "Unlit Lantern",
+
+  "item.veroxlib.unlit_torch": "Unlit Torch",
+  "item.veroxlib.unlit_lantern": "Unlit Lantern",
+
+  "effect.veroxlib.absolute_darkness": "Absolute Darkness",
+
+  "itemGroup.veroxlib.items": "VeroxLib: Items"
+}
