@@ -257,6 +257,3 @@ If you encounter issues:
 * Provide logs
 * Include loader + Minecraft version
 
----
-
-**VeroxLib - Modular sanity mechanics for modern Minecraft modding.**
