@@ -6,7 +6,7 @@
 ![License](https://img.shields.io/badge/License-MIT-lightgrey)
 ![API](https://img.shields.io/badge/API-Stable-success)
 
-**VeroxLib** is a lightweight **Architectury-based** library for Minecraft mods that introduces a fully extensible **Sanity System**.
+**VeroxLib** is a **Architectury-based** library for Minecraft mods that introduces a fully extensible **Sanity System**.
 
 It provides developers with an easy-to-use API for managing player mental states, triggering madness effects, and integrating sanity-related gameplay mechanics across **Fabric** and **NeoForge**.
 
@@ -16,29 +16,16 @@ It provides developers with an easy-to-use API for managing player mental states
 
 VeroxLib allows mods to simulate psychological mechanics such as fear, corruption, hallucinations, or insanity without reinventing infrastructure.
 
-Designed to be:
-
-* Lightweight
-* Modular
-* Multiplayer-safe
-* Cross-loader compatible
-* Developer-friendly
-
----
-
 ## Features
 
 ### Global Sanity System
 
 * Every player has a sanity value from `0.0` to `100.0`
-* Automatically synced
-* Server authoritative logic
 
 ### Modular Madness Effects
 
 * Register effects triggered by sanity thresholds
 * Client or server execution support
-* Fully extendable API
 
 ### Custom Attributes
 
@@ -60,7 +47,7 @@ via Architectury.
 
 Built-in support for **Cultist players**:
 
-* Immune to sanity loss
+* Immune to sanity effects
 * Ideal for factions, classes, or lore systems
 
 ---
