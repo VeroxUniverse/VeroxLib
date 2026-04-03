@@ -187,7 +187,6 @@ public class SanityCharmItem extends Item implements ISanityModifier {
 * Lovecraftian mechanics
 * Magic corruption systems
 * RPG classes & factions
-* Dimension-based sanity drain
 * Hallucination systems
 
 ---
@@ -224,16 +223,6 @@ Recommended workflow:
 4. Submit Pull Request
 
 Please keep API stability in mind.
-
----
-
-## API Design Goals
-
-* Minimal boilerplate
-* Clear extension points
-* No forced gameplay assumptions
-* Multiplayer-safe logic
-* Performance friendly
 
 ---
 
