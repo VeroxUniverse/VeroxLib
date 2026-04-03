@@ -1,6 +1,6 @@
 # VeroxLib
 
-![Minecraft](https://img.shields.io/badge/Minecraft-1.20%2B-green)
+![Minecraft](https://img.shields.io/badge/Minecraft-1.21%2B-green)
 ![Loader](https://img.shields.io/badge/Loader-Fabric%20%7C%20NeoForge-blue)
 ![Architectury](https://img.shields.io/badge/Architectury-Powered-orange)
 ![License](https://img.shields.io/badge/License-MIT-lightgrey)
