@@ -69,7 +69,7 @@ public class SanityEventHandler {
         });
 
         CommandRegistrationEvent.EVENT.register((dispatcher, registry, selection) -> {
-            var baseCmd = Commands.literal("wlb").requires(s -> s.hasPermission(2));
+            var baseCmd = Commands.literal("sanitysystem").requires(s -> s.hasPermission(2));
 
             baseCmd.then(Commands.literal("sanity")
                     .then(Commands.literal("set").then(Commands.argument("value", FloatArgumentType.floatArg(0, 100)).executes(c -> {
