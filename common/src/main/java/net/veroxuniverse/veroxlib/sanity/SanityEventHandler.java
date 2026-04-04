@@ -193,25 +193,29 @@ public class SanityEventHandler {
         int light = player.level().getMaxLocalRawBrightness(player.blockPosition());
         boolean cultist = SanityAPI.isCultist(player);
 
-        float modifier = SanityAPI.getSanityModifier(player);
+        float damageModifier = SanityAPI.getSanityModifier(player);
+        float regenModifier = SanityAPI.getSanityRegenModifier(player);
 
         if (light < SanityConfig.INSTANCE.darknessThreshold) {
             if (!SanityConditionManager.isBlocked(player, ISanityCondition.ConditionType.DECREASE)) {
-                SanityAPI.modifySanity(player, SanityConfig.INSTANCE.sanityReduction * modifier);
+                SanityAPI.modifySanity(player, SanityConfig.INSTANCE.sanityReduction * damageModifier);
             }
         } else if (light > SanityConfig.INSTANCE.brightnessThreshold) {
             if (!SanityConditionManager.isBlocked(player, ISanityCondition.ConditionType.INCREASE)) {
-                SanityAPI.modifySanity(player, SanityConfig.INSTANCE.sanityGain * modifier);
+                SanityAPI.modifySanity(player, SanityConfig.INSTANCE.sanityGain * regenModifier);
             }
         }
 
         if (debugEnabled) {
             double corruptionDisplay = SanityAPI.getCorruptionValue(player) * 100.0;
             String modeInfo = cultist ? "§d[Cultist Mode]" : "§b[Human Mode]";
+
             player.displayClientMessage(
                     Component.literal("§eSanity: §f" + String.format("%.1f", SanityAPI.getSanity(player)) +
                             " §8| §dCorr: §f" + String.format("%.1f", corruptionDisplay) + "%" +
-                            " §8| §eLight: §f" + light + " §8| §6Mod: §f" + String.format("%.2f", modifier) + " " + modeInfo),
+                            " §8| §eLight: §f" + light +
+                            " §8| §6Res: §f" + String.format("%.2f", damageModifier) +
+                            " §8| §aReg: §f" + String.format("%.2f", regenModifier) + " " + modeInfo),
                     true
             );
         }

@@ -15,8 +15,7 @@
   "gui.veroxlib.sanity_label": "Sanity",
 
   "attribute.veroxlib.sanity_resistance": "Sanity Resistance",
-  "attribute.veroxlib.corruption": "Corruption",
-
+  "attribute.veroxlib.sanity_regen": "Sanity Regeneration",
   "effect.veroxlib.sanity_protection": "Mental Clarity",
 
   "text.autoconfig.veroxlib.option.corruption": "Corruption Level",

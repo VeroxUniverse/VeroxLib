@@ -9,7 +9,15 @@ import net.minecraft.world.item.ItemStack;
  */
 public interface ISanityModifier {
     /**
-     * @return 1.0 = normal, 0.5 = half sanity change, 0.0 = no change.
+     * @return 0.0 = no protection, 0.2 = 20% protection, 0.8 = 80% protection.
      */
     float getSanityResistance(ItemStack stack);
+
+    /**
+     * @return 0.0 = no bonus, 0.2 = +20% faster healing, -0.2 = 20% slower healing.
+     * Default returns 0.0 (no change).
+     */
+    default float getSanityRegen(ItemStack stack) {
+        return 0.0f;
+    }
 }

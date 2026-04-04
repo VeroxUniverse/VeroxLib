@@ -32,6 +32,7 @@ public class PlayerAttributeMixin {
         AttributeSupplier.Builder builder = cir.getReturnValue();
 
         injectSafe(builder, "sanity_resistance");
+        injectSafe(builder, "sanity_regen");
         injectSafe(builder, "corruption");
     }
 

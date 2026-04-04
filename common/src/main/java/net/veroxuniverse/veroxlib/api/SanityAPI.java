@@ -25,6 +25,9 @@ public class SanityAPI {
     private static final ResourceKey<Attribute> RESISTANCE_KEY = ResourceKey.create(Registries.ATTRIBUTE,
             ResourceLocation.fromNamespaceAndPath(VeroxLib.MOD_ID, "sanity_resistance"));
 
+    private static final ResourceKey<Attribute> REGEN_KEY = ResourceKey.create(Registries.ATTRIBUTE,
+            ResourceLocation.fromNamespaceAndPath(VeroxLib.MOD_ID, "sanity_regen"));
+
     public static float getSanity(Player player) {
         if (player.getServer() == null) return 100f;
         return SanitySavedData.get(player.getServer()).getSanityMap()
@@ -101,5 +104,25 @@ public class SanityAPI {
         }
 
         return finalModifier;
+    }
+
+    public static float getSanityRegenModifier(Player player) {
+        float totalRegenBonus = 0.0f;
+
+        try {
+            Holder<Attribute> holder = player.level().registryAccess().registryOrThrow(Registries.ATTRIBUTE).getHolderOrThrow(REGEN_KEY);
+            AttributeInstance inst = player.getAttribute(holder);
+            if (inst != null) {
+                totalRegenBonus += (float) inst.getValue();
+            }
+        } catch (Exception ignored) {}
+
+        for (ItemStack stack : player.getArmorSlots()) {
+            if (!stack.isEmpty() && stack.getItem() instanceof ISanityModifier sanityItem) {
+                totalRegenBonus += sanityItem.getSanityRegen(stack);
+            }
+        }
+
+        return Math.max(0.0f, 1.0f + totalRegenBonus);
     }
 }

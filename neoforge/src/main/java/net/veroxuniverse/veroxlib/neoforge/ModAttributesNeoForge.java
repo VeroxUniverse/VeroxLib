@@ -29,7 +29,14 @@ public class ModAttributesNeoForge {
                         ResourceLocation.fromNamespaceAndPath(VeroxLib.MOD_ID, "corruption")
                 ));
 
+        Holder<Attribute> sanityRegen = BuiltInRegistries.ATTRIBUTE
+                .getHolderOrThrow(ResourceKey.create(
+                        Registries.ATTRIBUTE,
+                        ResourceLocation.fromNamespaceAndPath(VeroxLib.MOD_ID, "sanity_regen")
+                ));
+
         event.add(EntityType.PLAYER, sanityResistance);
+        event.add(EntityType.PLAYER, sanityRegen);
         event.add(EntityType.PLAYER, corruption);
     }
 }

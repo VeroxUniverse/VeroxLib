@@ -17,6 +17,12 @@ public class ModAttributes {
                     .setSyncable(true)
     );
 
+    public static final RegistrySupplier<Attribute> SANITY_REGEN = ATTRIBUTES.register(
+            "sanity_regen",
+            () -> new RangedAttribute("attribute.veroxlib.sanity_regen", 0.0D, -1.0D, 1.0D)
+                    .setSyncable(true)
+    );
+
     public static final RegistrySupplier<Attribute> CORRUPTION = ATTRIBUTES.register(
             "corruption",
             () -> new RangedAttribute("attribute.veroxlib.corruption", 0.0D, 0.0D, 1.0D)
