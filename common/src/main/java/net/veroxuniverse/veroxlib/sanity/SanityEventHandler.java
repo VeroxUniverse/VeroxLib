@@ -33,15 +33,15 @@ public class SanityEventHandler {
             ResourceLocation.fromNamespaceAndPath(VeroxLib.MOD_ID, "corruption"));
 
     private static final String[] SLEEP_MESSAGE_KEYS = {
-            "message.what_lurks_between.sleep_1", "message.what_lurks_between.sleep_2",
-            "message.what_lurks_between.sleep_3", "message.what_lurks_between.sleep_4",
-            "message.what_lurks_between.sleep_5", "message.what_lurks_between.sleep_6"
+            "message.veroxlib.sleep_1", "message.veroxlib.sleep_2",
+            "message.veroxlib.sleep_3", "message.veroxlib.sleep_4",
+            "message.veroxlib.sleep_5", "message.veroxlib.sleep_6"
     };
 
     private static final String[] CULTIST_SLEEP_MESSAGE_KEYS = {
-            "message.what_lurks_between.sleep_cultist_1",
-            "message.what_lurks_between.sleep_cultist_2",
-            "message.what_lurks_between.sleep_cultist_3"
+            "message.veroxlib.sleep_cultist_1",
+            "message.veroxlib.sleep_cultist_2",
+            "message.veroxlib.sleep_cultist_3"
     };
 
     public static void init() {
@@ -61,7 +61,7 @@ public class SanityEventHandler {
                     if (corruption != null) {
                         double newValue = Math.min(1.0, corruption.getBaseValue() + 0.02);
                         corruption.setBaseValue(newValue);
-                        player.sendSystemMessage(Component.translatable("message.what_lurks_between.corruption_increased")
+                        player.sendSystemMessage(Component.translatable("message.veroxlib.corruption_increased")
                                 .withStyle(ChatFormatting.DARK_RED, ChatFormatting.ITALIC));
                     }
                 } catch (Exception ignored) {}
@@ -143,7 +143,7 @@ public class SanityEventHandler {
             }));
 
             dispatcher.register(baseCmd);
-            dispatcher.register(Commands.literal("whatlurksbetween").redirect(dispatcher.getRoot().getChild("wlb")));
+            dispatcher.register(Commands.literal("veroxlib").redirect(dispatcher.getRoot().getChild("sanitysystem")));
         });
     }
 

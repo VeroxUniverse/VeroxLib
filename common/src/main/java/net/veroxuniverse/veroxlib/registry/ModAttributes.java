@@ -13,13 +13,13 @@ public class ModAttributes {
 
     public static final RegistrySupplier<Attribute> SANITY_RESISTANCE = ATTRIBUTES.register(
             "sanity_resistance",
-            () -> new RangedAttribute("attribute.what_lurks_between.sanity_resistance", 0.0D, 0.0D, 1.0D)
+            () -> new RangedAttribute("attribute.veroxlib.sanity_resistance", 0.0D, 0.0D, 1.0D)
                     .setSyncable(true)
     );
 
     public static final RegistrySupplier<Attribute> CORRUPTION = ATTRIBUTES.register(
             "corruption",
-            () -> new RangedAttribute("attribute.what_lurks_between.corruption", 0.0D, 0.0D, 1.0D)
+            () -> new RangedAttribute("attribute.veroxlib.corruption", 0.0D, 0.0D, 1.0D)
                     .setSyncable(true)
     );
 
