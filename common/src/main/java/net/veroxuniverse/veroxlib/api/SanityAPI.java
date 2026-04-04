@@ -69,33 +69,37 @@ public class SanityAPI {
     }
 
     public static float getSanityModifier(Player player) {
-        float modifier = 1.0f;
+        float baseModifier = 1.0f;
+        float totalProtection = 0.0f;
 
         try {
             Holder<Attribute> resHolder = player.level().registryAccess().registryOrThrow(Registries.ATTRIBUTE).getHolderOrThrow(RESISTANCE_KEY);
             AttributeInstance resistanceInstance = player.getAttribute(resHolder);
             if (resistanceInstance != null) {
-                float resistance = (float) resistanceInstance.getValue();
-                modifier *= (1.0f - Math.min(resistance, 1.0f));
+                totalProtection += (float) resistanceInstance.getValue();
             }
         } catch (Exception ignored) {}
+
+        for (ItemStack stack : player.getArmorSlots()) {
+            if (!stack.isEmpty() && stack.getItem() instanceof ISanityModifier sanityItem) {
+                totalProtection += sanityItem.getSanityResistance(stack);
+            }
+        }
+
+        totalProtection = Math.min(totalProtection, 0.9f);
 
         if (SanityConfig.INSTANCE.corruptionAffectsSanity) {
             float corruption = getCorruptionValue(player);
             float strength = SanityConfig.INSTANCE.corruptionMultiplierStrength / 10.0f;
-            modifier *= (1.0f + (corruption * strength));
+            baseModifier *= (1.0f + (corruption * strength));
         }
 
-        for (ItemStack stack : player.getArmorSlots()) {
-            if (!stack.isEmpty() && stack.getItem() instanceof ISanityModifier sanityItem) {
-                modifier *= sanityItem.getSanityResistance(stack);
-            }
-        }
+        float finalModifier = baseModifier * (1.0f - totalProtection);
 
         if (player.hasEffect(ModMobEffects.SANITY_PROTECTION)) {
-            modifier *= 0.5f;
+            finalModifier *= 0.5f;
         }
 
-        return modifier;
+        return finalModifier;
     }
 }
