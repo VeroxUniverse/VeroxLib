@@ -14,9 +14,11 @@ import net.minecraft.network.chat.Component;
 import net.minecraft.resources.ResourceKey;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.server.level.ServerPlayer;
+import net.minecraft.tags.TagKey;
 import net.minecraft.world.entity.ai.attributes.Attribute;
 import net.minecraft.world.entity.ai.attributes.AttributeInstance;
 import net.minecraft.world.entity.player.Player;
+import net.minecraft.world.level.biome.Biome;
 import net.veroxuniverse.veroxlib.VeroxLib;
 import net.veroxuniverse.veroxlib.api.ISanityCondition;
 import net.veroxuniverse.veroxlib.api.SanityAPI;
@@ -193,29 +195,51 @@ public class SanityEventHandler {
         int light = player.level().getMaxLocalRawBrightness(player.blockPosition());
         boolean cultist = SanityAPI.isCultist(player);
 
+        Holder<Biome> biomeHolder = player.level().getBiome(player.blockPosition());
+        boolean isHorrorBiome = biomeHolder.is(TagKey.create(Registries.BIOME,
+                ResourceLocation.fromNamespaceAndPath(VeroxLib.MOD_ID, "is_horror_biome")));
+
         float damageModifier = SanityAPI.getSanityModifier(player);
         float regenModifier = SanityAPI.getSanityRegenModifier(player);
 
-        if (light < SanityConfig.INSTANCE.darknessThreshold) {
-            if (!SanityConditionManager.isBlocked(player, ISanityCondition.ConditionType.DECREASE)) {
-                SanityAPI.modifySanity(player, SanityConfig.INSTANCE.sanityReduction * damageModifier);
+        boolean isBlocked = SanityConditionManager.isBlocked(player, ISanityCondition.ConditionType.DECREASE);
+
+        if (isHorrorBiome) {
+            float pressure = SanityConfig.INSTANCE.horrorBiomeVisualSanityPressure;
+
+            if (light < SanityConfig.INSTANCE.darknessThreshold) {
+                SanityAPI.modifySanity(player, (SanityConfig.INSTANCE.sanityReduction + pressure) * damageModifier);
+            } else {
+                if (!isBlocked) {
+                    if (SanityConfig.INSTANCE.horrorBiomesOverrideRegen) {
+                        SanityAPI.modifySanity(player, pressure * damageModifier);
+                    } else {
+                        SanityAPI.modifySanity(player, (SanityConfig.INSTANCE.sanityGain - Math.abs(pressure)) * regenModifier);
+                    }
+                }
             }
-        } else if (light > SanityConfig.INSTANCE.brightnessThreshold) {
-            if (!SanityConditionManager.isBlocked(player, ISanityCondition.ConditionType.INCREASE)) {
-                SanityAPI.modifySanity(player, SanityConfig.INSTANCE.sanityGain * regenModifier);
+        }
+        else {
+            if (light < SanityConfig.INSTANCE.darknessThreshold) {
+                if (!isBlocked) {
+                    SanityAPI.modifySanity(player, SanityConfig.INSTANCE.sanityReduction * damageModifier);
+                }
+            } else if (light > SanityConfig.INSTANCE.brightnessThreshold) {
+                if (!SanityConditionManager.isBlocked(player, ISanityCondition.ConditionType.INCREASE)) {
+                    SanityAPI.modifySanity(player, SanityConfig.INSTANCE.sanityGain * regenModifier);
+                }
             }
         }
 
         if (debugEnabled) {
             double corruptionDisplay = SanityAPI.getCorruptionValue(player) * 100.0;
-            String modeInfo = cultist ? "§d[Cultist Mode]" : "§b[Human Mode]";
+            String modeInfo = (cultist ? "§d[Cultist]" : "§b[Human]") + (isHorrorBiome ? " §4[HORROR]" : "");
 
             player.displayClientMessage(
                     Component.literal("§eSanity: §f" + String.format("%.1f", SanityAPI.getSanity(player)) +
-                            " §8| §dCorr: §f" + String.format("%.1f", corruptionDisplay) + "%" +
                             " §8| §eLight: §f" + light +
                             " §8| §6Res: §f" + String.format("%.2f", damageModifier) +
-                            " §8| §aReg: §f" + String.format("%.2f", regenModifier) + " " + modeInfo),
+                            " " + modeInfo),
                     true
             );
         }

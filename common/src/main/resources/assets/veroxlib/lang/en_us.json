@@ -71,6 +71,12 @@
   "text.autoconfig.veroxlib.option.heartbeat.enabled": "Enabled",
   "text.autoconfig.veroxlib.option.heartbeat.threshold": "Sanity Threshold",
 
+  "text.autoconfig.veroxlib.category.biomes": "Biome Settings",
+  "text.autoconfig.veroxlib.option.horrorBiomeVisualSanityPressure": "Horror Biome Pressure",
+  "text.autoconfig.veroxlib.option.horrorBiomeVisualSanityPressure.@Tooltip": "Constant sanity drain while inside a horror-tagged biome, regardless of light levels.",
+  "text.autoconfig.veroxlib.option.horrorBiomesOverrideRegen": "Override Light Regeneration",
+  "text.autoconfig.veroxlib.option.horrorBiomesOverrideRegen.@Tooltip": "If enabled, normal sanity recovery from light sources is disabled within horror biomes.",
+
   "block.veroxlib.unlit_torch": "Unlit Torch",
   "block.veroxlib.unlit_wall_torch": "Unlit Wall Torch",
   "block.veroxlib.unlit_lantern": "Unlit Lantern",

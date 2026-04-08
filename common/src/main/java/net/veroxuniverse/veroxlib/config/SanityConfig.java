@@ -74,6 +74,14 @@ public class SanityConfig implements ConfigData {
     @ConfigEntry.Category("effects")
     public SimpleEffectSettings heartbeat = new SimpleEffectSettings(true, 20f);
 
+    @ConfigEntry.Category("biomes")
+    @ConfigEntry.Gui.Tooltip
+    public float horrorBiomeVisualSanityPressure = -0.2f;
+
+    @ConfigEntry.Category("biomes")
+    @ConfigEntry.Gui.Tooltip
+    public boolean horrorBiomesOverrideRegen = true;
+
     public static class DarknessSettings {
         public boolean extinguishLamps;
         public float threshold;
