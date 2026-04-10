@@ -173,10 +173,11 @@ public class SanityCharmItem extends Item implements ISanityModifier {
 
 ## Attributes
 
-| Attribute                    | Description                                      |
-| ---------------------------- | ------------------------------------------------ |
-| `veroxlib:corruption`        | Increases sanity loss speed                      |
-| `veroxlib:sanity_resistance` | Reduces sanity changes (`1.0 = 100% resistance`) |
+| Attribute                    | Description                                       |
+|------------------------------|---------------------------------------------------|
+| `veroxlib:corruption`        | Increases sanity loss speed                       |
+| `veroxlib:sanity_resistance` | Controlls sanity loss (`1.0 = 100% resistance`)   |
+| `veroxlib:sanity_regen`      | Controll sanity regen (`1.0 = 100% regeneration`) |
 
 ## Example Use Cases
 
