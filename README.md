@@ -21,6 +21,7 @@ VeroxLib allows mods to simulate psychological mechanics such as fear, corruptio
 ### Global Sanity System
 
 * Every player has a sanity value from `0.0` to `100.0`
+* Sanity Loss in specific biome with the tag: `is_horror_biome`
 
 ### Modular Madness Effects
 
@@ -33,6 +34,7 @@ VeroxLib automatically registers:
 
 * `veroxlib:corruption`
 * `veroxlib:sanity_resistance`
+* `veroxlib:sanity_regen`
 
 ### Cross-Platform Support
 
@@ -106,8 +108,6 @@ if (SanityAPI.isCultist(player)) {
 
 ## Developer Guide
 
----
-
 ### Creating Custom Sanity Effects
 
 Implement `ISanityEffect`.
@@ -178,8 +178,6 @@ public class SanityCharmItem extends Item implements ISanityModifier {
 | `veroxlib:corruption`        | Increases sanity loss speed                      |
 | `veroxlib:sanity_resistance` | Reduces sanity changes (`1.0 = 100% resistance`) |
 
----
-
 ## Example Use Cases
 
 * Horror mods
@@ -199,8 +197,6 @@ public class SanityCharmItem extends Item implements ISanityModifier {
 | NeoForge | Yes         |
 | Forge    | not planned |
 | Quilt    | Untested    |
-
----
 
 ## Version Matrix
 
@@ -242,10 +238,6 @@ Attribution appreciated but not required.
 ## Credits
 
 Created for developers who want to build sanity mechanics without rebuilding core systems from scratch.
-
----
-
-## Future Plans
 
 ---
 
