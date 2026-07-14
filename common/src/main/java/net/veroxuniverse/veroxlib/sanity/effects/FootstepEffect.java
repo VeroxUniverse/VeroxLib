@@ -30,6 +30,11 @@ public class FootstepEffect implements ISanityEffect {
     }
 
     @Override
+    public boolean isEnabled(SanityConfig config) {
+        return config.footsteps.enabled;
+    }
+
+    @Override
     public boolean isClientSide() {
         return true;
     }

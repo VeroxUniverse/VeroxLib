@@ -28,6 +28,11 @@ public class FakeCreeperEffect implements ISanityEffect {
     }
 
     @Override
+    public boolean isEnabled(SanityConfig config) {
+        return config.fakeCreeper.enabled;
+    }
+
+    @Override
     public boolean isClientSide() {
         return true;
     }

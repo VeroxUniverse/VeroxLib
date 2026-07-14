@@ -1,6 +1,7 @@
 package net.veroxuniverse.veroxlib.api;
 
 import net.minecraft.world.entity.player.Player;
+import net.veroxuniverse.veroxlib.config.SanityConfig;
 
 /**
  * Interface for all madness-related effects that occur when sanity drops.
@@ -25,4 +26,8 @@ public interface ISanityEffect {
      * false if it's server-side (spawning mobs, applying damage/debuffs).
      */
     boolean isClientSide();
+
+    default boolean isEnabled(SanityConfig config) {
+        return true;
+    }
 }

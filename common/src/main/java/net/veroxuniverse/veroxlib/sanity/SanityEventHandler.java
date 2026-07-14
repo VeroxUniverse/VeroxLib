@@ -58,7 +58,9 @@ public class SanityEventHandler {
         PlayerEvent.PLAYER_RESPAWN.register((player, atCheckpoint, status) -> {
             if (SanityAPI.getSanity(player) <= 0.1f) {
                 try {
-                    Holder<Attribute> holder = player.level().registryAccess().registryOrThrow(Registries.ATTRIBUTE).getHolderOrThrow(CORRUPTION_KEY);
+                    Holder<Attribute> holder = player.level().registryAccess()
+                            .registryOrThrow(Registries.ATTRIBUTE)
+                            .getHolderOrThrow(CORRUPTION_KEY);
                     AttributeInstance corruption = player.getAttribute(holder);
                     if (corruption != null) {
                         double newValue = Math.min(1.0, corruption.getBaseValue() + 0.02);
@@ -93,7 +95,9 @@ public class SanityEventHandler {
                         double inputValue = DoubleArgumentType.getDouble(c, "value");
                         double internalValue = inputValue / 100.0;
                         try {
-                            Holder<Attribute> holder = p.level().registryAccess().registryOrThrow(Registries.ATTRIBUTE).getHolderOrThrow(CORRUPTION_KEY);
+                            Holder<Attribute> holder = p.level().registryAccess()
+                                    .registryOrThrow(Registries.ATTRIBUTE)
+                                    .getHolderOrThrow(CORRUPTION_KEY);
                             AttributeInstance inst = p.getAttribute(holder);
                             if (inst != null) {
                                 inst.setBaseValue(internalValue);
@@ -105,7 +109,9 @@ public class SanityEventHandler {
                     .then(Commands.literal("get").executes(c -> {
                         ServerPlayer p = c.getSource().getPlayerOrException();
                         try {
-                            Holder<Attribute> holder = p.level().registryAccess().registryOrThrow(Registries.ATTRIBUTE).getHolderOrThrow(CORRUPTION_KEY);
+                            Holder<Attribute> holder = p.level().registryAccess()
+                                    .registryOrThrow(Registries.ATTRIBUTE)
+                                    .getHolderOrThrow(CORRUPTION_KEY);
                             AttributeInstance inst = p.getAttribute(holder);
                             double val = (inst != null) ? inst.getValue() : 0.0;
                             c.getSource().sendSuccess(() -> Component.literal("§dCurrent Corruption: " + String.format("%.1f", val * 100.0) + "%"), false);
@@ -150,7 +156,7 @@ public class SanityEventHandler {
     }
 
     private static void onPlayerTick(Player player) {
-        if (!player.level().isClientSide) {
+        if (!player.level().isClientSide()) {
             if (player.isSleeping() && player.getSleepTimer() == 100) {
                 handleSleepResets(player);
             }
@@ -179,7 +185,9 @@ public class SanityEventHandler {
         if (!SanityConditionManager.isBlocked(player, ISanityCondition.ConditionType.RESET)) {
             float current = SanityAPI.getSanity(player);
             if (current < 100f) {
-                float amountToHeal = SanityConfig.INSTANCE.sleepResetsCompletely ? (100f - current) : Math.min(SanityConfig.INSTANCE.sanityGainFromSleep, 100f - current);
+                float amountToHeal = SanityConfig.INSTANCE.sleepResetsCompletely
+                        ? (100f - current)
+                        : Math.min(SanityConfig.INSTANCE.sanityGainFromSleep, 100f - current);
                 if (amountToHeal > 0) {
                     SanityAPI.modifySanity(player, amountToHeal);
                     boolean isCultist = SanityAPI.isCultist(player);
@@ -202,39 +210,37 @@ public class SanityEventHandler {
         float damageModifier = SanityAPI.getSanityModifier(player);
         float regenModifier = SanityAPI.getSanityRegenModifier(player);
 
-        boolean isBlocked = SanityConditionManager.isBlocked(player, ISanityCondition.ConditionType.DECREASE);
+        boolean isDecreaseBlocked = SanityConditionManager.isBlocked(player, ISanityCondition.ConditionType.DECREASE);
+        boolean isIncreaseBlocked = SanityConditionManager.isBlocked(player, ISanityCondition.ConditionType.INCREASE);
 
         if (isHorrorBiome) {
             float pressure = SanityConfig.INSTANCE.horrorBiomeVisualSanityPressure;
 
             if (light < SanityConfig.INSTANCE.darknessThreshold) {
-                SanityAPI.modifySanity(player, (SanityConfig.INSTANCE.sanityReduction + pressure) * damageModifier);
+                if (!isDecreaseBlocked) {
+                    SanityAPI.modifySanity(player, (SanityConfig.INSTANCE.sanityReduction + pressure) * damageModifier);
+                }
             } else {
-                if (!isBlocked) {
-                    if (SanityConfig.INSTANCE.horrorBiomesOverrideRegen) {
-                        SanityAPI.modifySanity(player, pressure * damageModifier);
-                    } else {
-                        SanityAPI.modifySanity(player, (SanityConfig.INSTANCE.sanityGain - Math.abs(pressure)) * regenModifier);
-                    }
+                if (!isDecreaseBlocked && SanityConfig.INSTANCE.horrorBiomesOverrideRegen) {
+                    SanityAPI.modifySanity(player, pressure * damageModifier);
+                } else if (!isIncreaseBlocked && !SanityConfig.INSTANCE.horrorBiomesOverrideRegen) {
+                    SanityAPI.modifySanity(player, (SanityConfig.INSTANCE.sanityGain - Math.abs(pressure)) * regenModifier);
                 }
             }
-        }
-        else {
+        } else {
             if (light < SanityConfig.INSTANCE.darknessThreshold) {
-                if (!isBlocked) {
+                if (!isDecreaseBlocked) {
                     SanityAPI.modifySanity(player, SanityConfig.INSTANCE.sanityReduction * damageModifier);
                 }
             } else if (light > SanityConfig.INSTANCE.brightnessThreshold) {
-                if (!SanityConditionManager.isBlocked(player, ISanityCondition.ConditionType.INCREASE)) {
+                if (!isIncreaseBlocked) {
                     SanityAPI.modifySanity(player, SanityConfig.INSTANCE.sanityGain * regenModifier);
                 }
             }
         }
 
         if (debugEnabled) {
-            double corruptionDisplay = SanityAPI.getCorruptionValue(player) * 100.0;
             String modeInfo = (cultist ? "§d[Cultist]" : "§b[Human]") + (isHorrorBiome ? " §4[HORROR]" : "");
-
             player.displayClientMessage(
                     Component.literal("§eSanity: §f" + String.format("%.1f", SanityAPI.getSanity(player)) +
                             " §8| §eLight: §f" + light +

@@ -27,6 +27,11 @@ public class HeartbeatEffect implements ISanityEffect {
     }
 
     @Override
+    public boolean isEnabled(SanityConfig config) {
+        return config.heartbeat.enabled;
+    }
+
+    @Override
     public boolean isClientSide() {
         return true;
     }

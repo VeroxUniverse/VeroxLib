@@ -27,6 +27,11 @@ public class WhisperingEffect implements ISanityEffect {
     }
 
     @Override
+    public boolean isEnabled(SanityConfig config) {
+        return config.whispering.enabled;
+    }
+
+    @Override
     public boolean isClientSide() {
         return true;
     }

@@ -34,6 +34,11 @@ public class DoorCreakEffect implements ISanityEffect {
     }
 
     @Override
+    public boolean isEnabled(SanityConfig config) {
+        return config.doorCreak.enabled;
+    }
+
+    @Override
     public boolean isClientSide() {
         return true;
     }
